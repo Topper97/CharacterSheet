@@ -7,130 +7,83 @@
 
 import SwiftUI
 
-struct StrengthView: View {
+struct StatView: View {
     var body: some View {
-        VStack {
-            Text("2")
-                //.padding()
-                .foregroundColor(.black)
-                .font(.largeTitle)
-                .bold()
-            Text("14")
-                .font(.title)
-            Text("Strength")
-                .scaledToFit()
-                .minimumScaleFactor(0.01)
-                
+        HStack() {
+            //StrengthView()
+            AttributeView(title: "Strength", value: 10)
+            AttributeView(title: "Dexterity", value: 20)
+            AttributeView(title: "Constitution", value: 14)
+            AttributeView(title: "Intelligence", value: 18)
+            AttributeView(title: "Wisdom", value: 11)
+            AttributeView(title: "Charisma", value: 15)
         }
-        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
     }
 }
-struct DexterityView: View {
+
+struct AttributeView: View {
+    var title: String
+    var value: Int
+    
     var body: some View {
-        VStack {
-            Text("5")
-                //.padding()
-                .foregroundColor(.black)
-                .font(.largeTitle)
-                .bold()
+        GeometryReader { geometry in
+            VStack {
+                Text(((value - 10)/2).description)
+                    //.padding()
+                    .foregroundColor(.black)
+                    .font(.largeTitle)
+                    .bold()
+                Text(value.description)
+                    .font(.title)
+                Text(title)
+                    
+                    .scaledToFit()
+                    .minimumScaleFactor(0.01)
+            }
             
-            Text("20")
-                .font(.title)
-            Text("Dexterity")
-                .scaledToFit()
-                .minimumScaleFactor(0.01)
+            .frame(width: geometry.size.width / 1, height: 100)
+            .border(Color.black)
         }
-        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
     }
 }
-struct ConstitutionView: View {
+
+struct AttackView: View {
+//    var title: String
+//    var value: Int
+    
     var body: some View {
-        VStack {
-            Text("2")
-                //.padding()
-                .foregroundColor(.black)
-                .font(.largeTitle)
-                .bold()
-            Text("14")
-                .font(.title)
-            Text("Constitution")
-                .scaledToFit()
-                .minimumScaleFactor(0.01)
+        GeometryReader { geometry in
+            HStack {
+                Text("Some attack")
+                    .padding()
+                    .border(Color.black)
+                Text ("Modfier")
+                    .padding()
+                    .border(Color.black)
+                Text ("Damage/Type")
+                    .padding()
+                    .border(Color.black)
+            }
+            
+            .frame(width: geometry.size.width, height: 50)
+            .border(Color.black)
         }
-        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
-    }
-}
-struct IntelligenceView: View {
-    var body: some View {
-        VStack {
-            Text("3")
-                //.padding()
-                .foregroundColor(.black)
-                .font(.largeTitle)
-                .bold()
-            Text("16")
-                .font(.title)
-            Text("Intelligence")
-                .scaledToFit()
-                .minimumScaleFactor(0.01)
-        }
-        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
-    }
-}
-struct WisdomView: View {
-    var body: some View {
-        VStack {
-            Text("1")
-                //.padding()
-                .foregroundColor(.black)
-                .font(.largeTitle)
-                .bold()
-            Text("13")
-                .font(.title)
-            Text("Wisdom")
-                .scaledToFit()
-                .minimumScaleFactor(0.01)
-        }
-        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
-    }
-}
-struct CharismaView: View {
-    var body: some View {
-        VStack {
-            Text("0")
-                //.padding()
-                .foregroundColor(.black)
-                .font(.largeTitle)
-                .bold()
-            Text("10")
-                .font(.title)
-            Text("Charisma")
-                .scaledToFit()
-                .minimumScaleFactor(0.01)
-                
-        }
-        .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
     }
 }
 struct ContentView: View {
+    @State var name: String = ""
     var body: some View {
         
         VStack () {
-            HStack(alignment: .firstTextBaseline) {
-                StrengthView()
-                DexterityView()
-                ConstitutionView()
-                IntelligenceView()
-                WisdomView()
-                CharismaView()
-            }
-            
-        
-            Text("Character sheet")
+            TextField("Character Name", text: $name)
+                .multilineTextAlignment(.center)
+                .padding()
+                .background(Color.black)
+                .foregroundColor(.white)
+                .font(.largeTitle)
+            StatView()
+            AttackView()
             .padding()
-            .foregroundColor(.red)
-            .font(.largeTitle)
-            
             Spacer()
         }
         

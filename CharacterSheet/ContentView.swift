@@ -6,15 +6,21 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct CharacterInfoView: View {
     @State var name: String = ""
     var body: some View {
         VStack (alignment: .leading){
-            TextField("Character Name", text: $name)
+//            TextField("Character Name", text: $name)
+//                .multilineTextAlignment(.center)
+//                .padding()
+//                .font(.largeTitle)
+            Text("Character Name")
                 .multilineTextAlignment(.center)
                 .padding()
                 .font(.largeTitle)
+                .frame(alignment: .center)
             HStack {
                 Text("Class:")
                     .padding(.leading)
@@ -26,9 +32,7 @@ struct CharacterInfoView: View {
                     .frame(alignment: .trailing)
                 Text("1")
                     .padding(.trailing)
-                    
             }
-
             HStack {
                 Text("Race:")
                     .padding(.leading)
@@ -41,26 +45,38 @@ struct CharacterInfoView: View {
                 Text("Lawful Good")
                     .padding(.trailing)
             }
-
         }
-        .background(Color.white)
-        .foregroundColor(.black)
-
     }
-    
 }
 
 struct StatView: View {
     var body: some View {
-        HStack() {
-            AttributeView(title: "Strength", value: 10)
-            AttributeView(title: "Dexterity", value: 20)
-            AttributeView(title: "Constitution", value: 14)
-            AttributeView(title: "Intelligence", value: 18)
-            AttributeView(title: "Wisdom", value: 11)
-            AttributeView(title: "Charisma", value: 15)
+        VStack {
+            HStack() {
+                AttributeView(title: "Strength", value: 10)
+                AttributeView(title: "Dexterity", value: 20)
+                AttributeView(title: "Constitution", value: 14)
+                AttributeView(title: "Intelligence", value: 18)
+                AttributeView(title: "Wisdom", value: 11)
+                AttributeView(title: "Charisma", value: 15)
+            }
+            .padding(.horizontal)
+            HStack() {
+                ValueNameView(value:20, name:"Armor Class")
+                ValueNameView(value:2, name:"Initiative")
+                ValueNameView(value:30, name:"Speed")
+            }
+            .padding([.top, .leading, .trailing])
+            HStack() {
+                ValueNameView(value:40, name:"Health Points")
+                VStack (){
+                    ValueNameView(value:0, name:"Temp Health Points")
+                    ValueNameView(value:4, name:"Hit Die")
+                }
+                
+            }
+            .padding([.top, .leading, .trailing])
         }
-        .padding(.horizontal)
     }
 }
 
@@ -72,7 +88,7 @@ struct AttributeView: View {
         VStack {
                 Text(((value - 10)/2).description)
                     //.padding()
-                    .foregroundColor(.black)
+                    .foregroundColor(Color.init(.label))
                     .font(.largeTitle)
                     .bold()
                 Text(value.description)
@@ -81,9 +97,8 @@ struct AttributeView: View {
                 .scaledToFit()
                 .minimumScaleFactor(0.01)
             }
-        
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
-            .border(Color.black)
+            .border(Color.init(.label))
         //}
     }
 }
@@ -106,13 +121,33 @@ struct AttackView: View {
                     .padding(.trailing)
                     //.border(Color.black)
             }
-
-            .border(Color.black)
+            .border(Color.init(.label))
         //}
     }
 }
+
+struct ValueNameView: View {
+    var value: Int
+    var name: String
+    var body: some View {
+        VStack {
+            Text(value.description)
+                .font(.largeTitle)
+                .bold()
+            Text(name.description)
+                .scaledToFit()
+                .minimumScaleFactor(0.01)
+        }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
+        .border(Color.init(.label))
+        
+        
+    }
+}
+
+
 struct ContentView: View {
-    
+    @Environment(\.managedObjectContext) private var viewContext
     var body: some View {
         
         VStack () {
@@ -121,10 +156,11 @@ struct ContentView: View {
                 .frame(height:5)
             StatView()
             AttackView(title: "Dagger", diceNum: 1, diceSide: 4, damage: "Piercing")
-                .padding(.top)
-            
+                .padding(.top)            
             Spacer()
         }
+        .background(Color.init(.systemBackground))
+        .foregroundColor(Color.init(.label))
         
         
     }
@@ -137,4 +173,10 @@ struct ContentView_Previews: PreviewProvider {
             ContentView()
         }
     }
+}
+
+private func addCharacter()
+{
+    //let newChar = PlayerCharacter(context: <#T##NSManagedObjectContext#>)
+    
 }

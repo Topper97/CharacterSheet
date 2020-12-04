@@ -13,6 +13,11 @@
 		9D1571AF25794E8D00EE4EFD /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D1571AE25794E8D00EE4EFD /* Preview Assets.xcassets */; };
 		9D1571BA25794E8D00EE4EFD /* CharacterSheetTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1571B925794E8D00EE4EFD /* CharacterSheetTests.swift */; };
 		9D1571C525794E8D00EE4EFD /* CharacterSheetUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1571C425794E8D00EE4EFD /* CharacterSheetUITests.swift */; };
+		9D1571D725798C4200EE4EFD /* Character.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9D1571D525798C4200EE4EFD /* Character.xcdatamodeld */; };
+		9D1571DC257ACAEF00EE4EFD /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1571DB257ACAEE00EE4EFD /* Persistence.swift */; };
+		9D1571E1257ACE8900EE4EFD /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1571E0257ACE8800EE4EFD /* CharacterListView.swift */; };
+		9D1571EB257AD27E00EE4EFD /* PlayerCharacter+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1571E9257AD27E00EE4EFD /* PlayerCharacter+CoreDataClass.swift */; };
+		9D1571EC257AD27E00EE4EFD /* PlayerCharacter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1571EA257AD27E00EE4EFD /* PlayerCharacter+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +50,11 @@
 		9D1571C025794E8D00EE4EFD /* CharacterSheetUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CharacterSheetUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D1571C425794E8D00EE4EFD /* CharacterSheetUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterSheetUITests.swift; sourceTree = "<group>"; };
 		9D1571C625794E8D00EE4EFD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9D1571D625798C4200EE4EFD /* Character.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Character.xcdatamodel; sourceTree = "<group>"; };
+		9D1571DB257ACAEE00EE4EFD /* Persistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+		9D1571E0257ACE8800EE4EFD /* CharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListView.swift; sourceTree = "<group>"; };
+		9D1571E9257AD27E00EE4EFD /* PlayerCharacter+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerCharacter+CoreDataClass.swift"; sourceTree = "<group>"; };
+		9D1571EA257AD27E00EE4EFD /* PlayerCharacter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerCharacter+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,11 +105,15 @@
 		9D1571A625794E8A00EE4EFD /* CharacterSheet */ = {
 			isa = PBXGroup;
 			children = (
+				9D1571E8257AD23D00EE4EFD /* Model */,
+				9D1571DB257ACAEE00EE4EFD /* Persistence.swift */,
 				9D1571A725794E8A00EE4EFD /* CharacterSheetApp.swift */,
 				9D1571A925794E8A00EE4EFD /* ContentView.swift */,
+				9D1571D525798C4200EE4EFD /* Character.xcdatamodeld */,
 				9D1571AB25794E8D00EE4EFD /* Assets.xcassets */,
 				9D1571B025794E8D00EE4EFD /* Info.plist */,
 				9D1571AD25794E8D00EE4EFD /* Preview Content */,
+				9D1571E0257ACE8800EE4EFD /* CharacterListView.swift */,
 			);
 			path = CharacterSheet;
 			sourceTree = "<group>";
@@ -128,6 +142,15 @@
 				9D1571C625794E8D00EE4EFD /* Info.plist */,
 			);
 			path = CharacterSheetUITests;
+			sourceTree = "<group>";
+		};
+		9D1571E8257AD23D00EE4EFD /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9D1571E9257AD27E00EE4EFD /* PlayerCharacter+CoreDataClass.swift */,
+				9D1571EA257AD27E00EE4EFD /* PlayerCharacter+CoreDataProperties.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +282,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9D1571EB257AD27E00EE4EFD /* PlayerCharacter+CoreDataClass.swift in Sources */,
+				9D1571D725798C4200EE4EFD /* Character.xcdatamodeld in Sources */,
+				9D1571DC257ACAEF00EE4EFD /* Persistence.swift in Sources */,
+				9D1571E1257ACE8900EE4EFD /* CharacterListView.swift in Sources */,
+				9D1571EC257AD27E00EE4EFD /* PlayerCharacter+CoreDataProperties.swift in Sources */,
 				9D1571AA25794E8A00EE4EFD /* ContentView.swift in Sources */,
 				9D1571A825794E8A00EE4EFD /* CharacterSheetApp.swift in Sources */,
 			);
@@ -580,6 +608,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		9D1571D525798C4200EE4EFD /* Character.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				9D1571D625798C4200EE4EFD /* Character.xcdatamodel */,
+			);
+			currentVersion = 9D1571D625798C4200EE4EFD /* Character.xcdatamodel */;
+			path = Character.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 9D15719C25794E8A00EE4EFD /* Project object */;
 }

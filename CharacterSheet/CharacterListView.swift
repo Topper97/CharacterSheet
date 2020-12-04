@@ -11,23 +11,28 @@ import CoreData
 struct CharacterListView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
-    @FetchRequest(
+    @FetchRequest( entity: PlayerCharacter.entity(),
         sortDescriptors: [NSSortDescriptor(keyPath: \PlayerCharacter.pName, ascending: true)],
             animation: .default)
     private var characters: FetchedResults<PlayerCharacter>
     var body: some View {
-        List{
-            ForEach(characters) {player in
-                Text(player.pName)
+        NavigationView {
+            List{
+                ForEach(characters) { (player: PlayerCharacter) in
+                    NavigationLink(destination: ContentView(char: player)){
+                        Text(player.pName ?? "")
+                    }
+                }
+                .onDelete(perform: deleteItems)
             }
-        }
-        .toolbar {
-            Button(action: addCharacter) {
-                Label("Add Item", systemImage: "plus")
+            .navigationBarTitle("Characters", displayMode: .automatic)
+            .toolbar {
+                Button(action: addCharacter) {
+                    Label("Add Item", systemImage: "plus")
+                }
             }
-        }
+        }        
     }
-    
     private func addCharacter()
     {
         withAnimation {
@@ -43,6 +48,18 @@ struct CharacterListView: View {
         }
         
         
+    }
+    private func deleteItems(offsets: IndexSet) {
+        withAnimation {
+            offsets.map { characters[$0] }.forEach(viewContext.delete)
+            
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
     }
 }
 

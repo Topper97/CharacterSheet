@@ -9,14 +9,15 @@ import SwiftUI
 import CoreData
 
 struct CharacterInfoView: View {
-    @State var name: String = ""
+    @State var name: String
+    
     var body: some View {
         VStack (alignment: .leading){
-//            TextField("Character Name", text: $name)
-//                .multilineTextAlignment(.center)
-//                .padding()
-//                .font(.largeTitle)
-            Text("Character Name")
+            //            TextField("Character Name", text: $name)
+            //                .multilineTextAlignment(.center)
+            //                .padding()
+            //                .font(.largeTitle)
+            Text(name)
                 .multilineTextAlignment(.center)
                 .padding()
                 .font(.largeTitle)
@@ -86,19 +87,19 @@ struct AttributeView: View {
     
     var body: some View {
         VStack {
-                Text(((value - 10)/2).description)
-                    //.padding()
-                    .foregroundColor(Color.init(.label))
-                    .font(.largeTitle)
-                    .bold()
-                Text(value.description)
-                    .font(.title)
+            Text(((value - 10)/2).description)
+                //.padding()
+                .foregroundColor(Color.init(.label))
+                .font(.largeTitle)
+                .bold()
+            Text(value.description)
+                .font(.title)
             Text(title)
                 .scaledToFit()
                 .minimumScaleFactor(0.01)
-            }
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
-            .border(Color.init(.label))
+        }
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: 100)
+        .border(Color.init(.label))
         //}
     }
 }
@@ -110,18 +111,18 @@ struct AttackView: View {
     var damage: String
     
     var body: some View {
-            HStack {
-                Text(title)
-                    .padding(.leading)
-                    //.border(Color.black)
-                Text ("Modfier")
-                    .padding(.horizontal)
-                    //.border(Color.black)
-                Text (diceNum.description + "d" + diceSide.description + " " + damage)
-                    .padding(.trailing)
-                    //.border(Color.black)
-            }
-            .border(Color.init(.label))
+        HStack {
+            Text(title)
+                .padding(.leading)
+            //.border(Color.black)
+            Text ("Modfier")
+                .padding(.horizontal)
+            //.border(Color.black)
+            Text (diceNum.description + "d" + diceSide.description + " " + damage)
+                .padding(.trailing)
+            //.border(Color.black)
+        }
+        .border(Color.init(.label))
         //}
     }
 }
@@ -147,36 +148,37 @@ struct ValueNameView: View {
 
 
 struct ContentView: View {
-    @Environment(\.managedObjectContext) private var viewContext
-    var body: some View {
-        
-        VStack () {
-            CharacterInfoView()
-            Spacer()
-                .frame(height:5)
-            StatView()
-            AttackView(title: "Dagger", diceNum: 1, diceSide: 4, damage: "Piercing")
-                .padding(.top)            
-            Spacer()
-        }
-        .background(Color.init(.systemBackground))
-        .foregroundColor(Color.init(.label))
-        
-        
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        
-        VStack () {
-            ContentView()
-        }
-    }
-}
-
-private func addCharacter()
-{
-    //let newChar = PlayerCharacter(context: <#T##NSManagedObjectContext#>)
     
+    var char: PlayerCharacter
+    
+    var body: some View {
+        ScrollView {
+            VStack  {
+                CharacterInfoView(name: char.pName ?? "Character Name")
+                Spacer()
+                    .frame(height:5)
+                StatView()
+                AttackView(title: "Dagger", diceNum: 1, diceSide: 4, damage: "Piercing")
+                    .padding(.top)
+                Spacer()
+            }
+            .background(Color.init(.systemBackground))
+            .foregroundColor(Color.init(.label))
+            .navigationBarTitle(char.pName ?? "", displayMode: .inline)
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button(action: editChar) {
+                        Text("Edit")
+                    }
+                }
+                
+            }
+            Spacer()
+        }
+    }
+    
+    private func editChar()
+    {
+        print("Edit")
+    }
 }

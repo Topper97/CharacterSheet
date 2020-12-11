@@ -167,7 +167,7 @@ struct ContentView: View {
             .navigationBarTitle(char.pName ?? "", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
-                    Button(action: editChar) {
+                    Button(action: {editChar(sheet: char)}) {
                         Text("Edit")
                     }
                 }
@@ -177,8 +177,10 @@ struct ContentView: View {
         }
     }
     
-    private func editChar()
+    private func editChar(sheet: PlayerCharacter)
     {
+        
+        sheet.setValue("Chris", forKey: "pName")
         print("Edit")
     }
 }

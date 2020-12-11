@@ -39,6 +39,7 @@ struct CharacterListView: View {
         withAnimation {
             let newChar = PlayerCharacter(context: viewContext)
             newChar.pName = "Joe"
+            newChar.cClass = "Druid"
             
             do {
                 try viewContext.save()

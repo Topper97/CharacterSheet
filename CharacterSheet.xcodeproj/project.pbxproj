@@ -18,6 +18,7 @@
 		9D1571E1257ACE8900EE4EFD /* CharacterListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1571E0257ACE8800EE4EFD /* CharacterListView.swift */; };
 		9D1571EB257AD27E00EE4EFD /* PlayerCharacter+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1571E9257AD27E00EE4EFD /* PlayerCharacter+CoreDataClass.swift */; };
 		9D1571EC257AD27E00EE4EFD /* PlayerCharacter+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1571EA257AD27E00EE4EFD /* PlayerCharacter+CoreDataProperties.swift */; };
+		9DA64C962583C11B00F8CF30 /* DebugBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA64C952583C11B00F8CF30 /* DebugBorder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		9D1571E0257ACE8800EE4EFD /* CharacterListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterListView.swift; sourceTree = "<group>"; };
 		9D1571E9257AD27E00EE4EFD /* PlayerCharacter+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerCharacter+CoreDataClass.swift"; sourceTree = "<group>"; };
 		9D1571EA257AD27E00EE4EFD /* PlayerCharacter+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PlayerCharacter+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		9DA64C952583C11B00F8CF30 /* DebugBorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugBorder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 		9D1571A625794E8A00EE4EFD /* CharacterSheet */ = {
 			isa = PBXGroup;
 			children = (
+				9DA64C952583C11B00F8CF30 /* DebugBorder.swift */,
 				9D1571E8257AD23D00EE4EFD /* Model */,
 				9D1571DB257ACAEE00EE4EFD /* Persistence.swift */,
 				9D1571A725794E8A00EE4EFD /* CharacterSheetApp.swift */,
@@ -283,6 +286,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D1571EB257AD27E00EE4EFD /* PlayerCharacter+CoreDataClass.swift in Sources */,
+				9DA64C962583C11B00F8CF30 /* DebugBorder.swift in Sources */,
 				9D1571D725798C4200EE4EFD /* Character.xcdatamodeld in Sources */,
 				9D1571DC257ACAEF00EE4EFD /* Persistence.swift in Sources */,
 				9D1571E1257ACE8900EE4EFD /* CharacterListView.swift in Sources */,

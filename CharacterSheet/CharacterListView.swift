@@ -20,7 +20,7 @@ struct CharacterListView: View {
             List{
                 ForEach(characters) { (player: PlayerCharacter) in
                     NavigationLink(destination: ContentView(char: player)){
-                        Text(player.pName ?? "")
+                        Text(player.pName)
                     }
                     .environment(\.managedObjectContext, viewContext)
                 }

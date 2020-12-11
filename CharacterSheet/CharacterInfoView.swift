@@ -13,9 +13,11 @@ struct CharacterInfoView: View {
     @Binding var playerClass: String
     @Binding var race: String
     @Binding var level: Int64
+    @Binding var alignment: String
+    
+    
+    
     var editing: Bool
-    var alignments = ["Lawful good", "Neutral good", "Chaotic good", "Lawful neutral", "Neutral", "Chaotic neutral", "Lawful evil", "Neutral evil", "Chaotic evil"]
-    @State private var selectedalignment = 0
     
     var body: some View {
         VStack (alignment: .leading){
@@ -47,30 +49,23 @@ struct CharacterInfoView: View {
                 TextField("Race", text: $race)
                     .multilineTextAlignment(.leading)
                     .disabled(!editing)
-                    .debugBorder()
-
+                    
+            }
+            HStack {
                 Text("Alignment:")
                     .padding(.leading)
-                    .frame(alignment: .trailing)
-                    .debugBorder(color: Color.red)
-                Form{
-                    Picker(selection: $selectedalignment, label: Text("")) {
-                        ForEach(0 ..< alignments.count) {
-                            Text(self.alignments[$0])
-                            
-                        }
-                    }
+                    .frame(alignment: .leading)
                     
-                    .labelsHidden()
+                NavigationLink (destination: AlignmentView(selectedAlignment: $alignment, selected: alignment))
+                    {
+                    TextField("alignment", text: $alignment)
+                        .disabled(true)
                 }
                 .padding(.trailing)
                 
-                .debugBorder()
                 .disabled(!editing)
+
             }
-            .debugBorder(color: Color.yellow)
-            
-            
         }
     }
 }

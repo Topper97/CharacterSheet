@@ -113,7 +113,7 @@ struct ContentView: View {
     var body: some View {
         ScrollView {
             VStack  {
-                CharacterInfoView(name: $char.pName, playerClass: $char.cClass, race: $char.race, level: $char.level, editing: editing)
+                CharacterInfoView(name: $char.pName, playerClass: $char.cClass, race: $char.race, level: $char.level, alignment: $char.alignment, editing: editing)
                 Spacer()
                     .frame(height:5)
                 StatView()

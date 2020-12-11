@@ -22,6 +22,7 @@ struct CharacterListView: View {
                     NavigationLink(destination: ContentView(char: player)){
                         Text(player.pName ?? "")
                     }
+                    .environment(\.managedObjectContext, viewContext)
                 }
                 .onDelete(perform: deleteItems)
             }

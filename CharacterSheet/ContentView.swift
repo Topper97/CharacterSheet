@@ -10,18 +10,20 @@ import CoreData
 
 struct CharacterInfoView: View {
     @State var name: String
+    var toEdit: Bool
     
     var body: some View {
         VStack (alignment: .leading){
-            //            TextField("Character Name", text: $name)
-            //                .multilineTextAlignment(.center)
-            //                .padding()
-            //                .font(.largeTitle)
-            Text(name)
+            TextField("Character Name", text: $name)
                 .multilineTextAlignment(.center)
                 .padding()
                 .font(.largeTitle)
-                .frame(alignment: .center)
+                .disabled(toEdit)
+//            Text(name)
+//                .multilineTextAlignment(.center)
+//                .padding()
+//                .font(.largeTitle)
+//                .frame(alignment: .center)
             HStack {
                 Text("Class:")
                     .padding(.leading)
@@ -46,6 +48,7 @@ struct CharacterInfoView: View {
                 Text("Lawful Good")
                     .padding(.trailing)
             }
+            
         }
     }
 }
@@ -148,13 +151,14 @@ struct ValueNameView: View {
 
 
 struct ContentView: View {
-    
+    @Environment(\.managedObjectContext) private var viewContext
     var char: PlayerCharacter
+    @State private var toEdit = false
     
     var body: some View {
         ScrollView {
             VStack  {
-                CharacterInfoView(name: char.pName ?? "Character Name")
+                CharacterInfoView(name: char.pName ?? "Character Name", toEdit: toEdit)
                 Spacer()
                     .frame(height:5)
                 StatView()
@@ -167,8 +171,8 @@ struct ContentView: View {
             .navigationBarTitle(char.pName ?? "", displayMode: .inline)
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
-                    Button(action: {editChar(sheet: char)}) {
-                        Text("Edit")
+                    Button(action: {editChar()}) {
+                        Text(self.toEdit ? "Save" : "Edit")
                     }
                 }
                 
@@ -177,10 +181,19 @@ struct ContentView: View {
         }
     }
     
-    private func editChar(sheet: PlayerCharacter)
+    private func editChar()
     {
         
-        sheet.setValue("Chris", forKey: "pName")
+        char.setValue("Chris", forKey: "pName")
         print("Edit")
+        toEdit.toggle()
+        
+        do {
+            try viewContext.save()
+        } catch {
+            let nsError = error as NSError
+            fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+        }
+        
     }
 }

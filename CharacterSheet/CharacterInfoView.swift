@@ -37,7 +37,6 @@ struct CharacterInfoView: View {
                 Spacer()
                 if editing {
                     Text("Level: \(level)")
-                
                     HStack {
                         Button(action: {
                             changed.toggle()
@@ -45,7 +44,6 @@ struct CharacterInfoView: View {
                                 level -= 1
                             }
                         }) {
-                            
                             Image(systemName: "minus")
                                 .padding(4)
                         }
@@ -57,10 +55,7 @@ struct CharacterInfoView: View {
                             if level < 20 {
                                 level += 1
                             }
-                            
-                            
                         }) {
-                            
                             Image(systemName: "plus")
                                 .padding(4)
                         }

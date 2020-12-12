@@ -31,11 +31,9 @@ struct AlignmentView: View {
                             Image(systemName: "checkmark")
                         }
                     }
-                }
-                
+                }                
             }
         }
-        
     }
     
 }

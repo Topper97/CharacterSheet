@@ -10,6 +10,7 @@ import SwiftUI
 struct AlignmentView: View {
     @State var selectedAlignment: Binding<String>
     @State var selected: String
+    @Binding var changed: Bool
     var alignments = ["Lawful good", "Neutral good", "Chaotic good", "Lawful neutral", "Neutral", "Chaotic neutral", "Lawful evil", "Neutral evil", "Chaotic evil"]
     
     var body: some View {
@@ -19,12 +20,7 @@ struct AlignmentView: View {
                 Button(action: {
                     selectedAlignment.wrappedValue = align
                     selected=align
-                    do {
-                        try PersistenceController.shared.container.viewContext.save()
-                    } catch {
-                        let nsError = error as NSError
-                        fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                    }
+                    changed.toggle()
                 }) {
                     HStack
                     {

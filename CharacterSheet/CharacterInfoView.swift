@@ -15,7 +15,7 @@ struct CharacterInfoView: View {
     @Binding var level: Int64
     @Binding var alignment: String
     
-    
+    @State var changed: Bool=false
     
     var editing: Bool
     
@@ -35,12 +35,45 @@ struct CharacterInfoView: View {
                     .multilineTextAlignment(.leading)
                     .disabled(!editing)
                 Spacer()
-                //                Text("Level:")
-                //                    .padding(.leading)
-                //                    .frame(alignment: .trailing)
-                Text("Level: \(level)")
-                Stepper("", value: $level, in: 0...20)
+                if editing {
+                    Text("Level: \(level)")
+                
+                    HStack {
+                        Button(action: {
+                            changed.toggle()
+                            if level > 1 {
+                                level -= 1
+                            }
+                        }) {
+                            
+                            Image(systemName: "minus")
+                                .padding(4)
+                        }
+                        .frame(minWidth: 40, idealWidth: 40, maxWidth: 40, minHeight: 30, idealHeight: 30, maxHeight: 30, alignment: .center)
+                        .background(Color.gray)
+                        .cornerRadius(5)
+                        Button(action: {
+                            changed.toggle()
+                            if level < 20 {
+                                level += 1
+                            }
+                            
+                            
+                        }) {
+                            
+                            Image(systemName: "plus")
+                                .padding(4)
+                        }
+                        .frame(minWidth: 40, idealWidth: 40, maxWidth: 40, minHeight: 30, idealHeight: 30, maxHeight: 30, alignment: .center)
+                        .background(Color.gray)
+                        .cornerRadius(5)
+                    }
                     .padding(.trailing)
+                }
+                else{
+                    Text("Level: \(level)")
+                        .padding(.trailing)
+                }
             }
             HStack {
                 Text("Race:")
@@ -49,23 +82,25 @@ struct CharacterInfoView: View {
                 TextField("Race", text: $race)
                     .multilineTextAlignment(.leading)
                     .disabled(!editing)
-                    
+                
             }
             HStack {
                 Text("Alignment:")
                     .padding(.leading)
                     .frame(alignment: .leading)
-                    
-                NavigationLink (destination: AlignmentView(selectedAlignment: $alignment, selected: alignment))
-                    {
+                
+                NavigationLink (destination: AlignmentView(selectedAlignment: $alignment, selected: alignment, changed: $changed))
+                {
                     TextField("alignment", text: $alignment)
                         .disabled(true)
                 }
                 .padding(.trailing)
                 
                 .disabled(!editing)
-
+                
             }
+            Text(changed.description)
+                .hidden()
         }
     }
 }
